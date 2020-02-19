@@ -1,0 +1,20 @@
+[
+	{
+		"id": 1,
+		"name": "Sample Event",
+		"location": "Hotel Now",
+		"city": "San Francisco",
+		"province": "California",
+		"country": "United States",
+		"postalCode": 11256
+	},
+	{
+		"id": 2,
+		"name": "Sample Event Two",
+		"location": "Hotel Over There",
+		"city": "San Jose",
+		"province": "California",
+		"country": "United States",
+		"postalCode": 11259
+	}
+]
