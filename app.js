@@ -95,6 +95,24 @@ app.patch("/api/v1/events/:id", (req, res) => {
 	});
 });
 
+app.delete("/api/v1/events/:id", (req, res) => {
+	const id = req.params.id * 1;
+	const event = events.find(el => el.id === id);
+
+	if (!event) {
+		return res.status(404).json({
+			status: "fail",
+			message: "Invalid event ID"
+		});
+	}
+
+	// Update event here
+	res.status(204).json({
+		status: "success",
+		data: null
+	});
+});
+
 const port = 3000;
 app.listen(port, () => {
 	console.log(`App running on port ${port}...`);
