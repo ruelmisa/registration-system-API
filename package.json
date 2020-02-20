@@ -4,12 +4,13 @@
 	"description": "OPAL Group API for all company related services",
 	"main": "app.js",
 	"scripts": {
-		"start": "nodemon app.js"
+		"start": "nodemon server.js"
 	},
 	"author": "Opal Group Tech Team",
 	"license": "ISC",
 	"dependencies": {
 		"express": "^4.17.1",
+		"morgan": "^1.9.1",
 		"slugify": "^1.3.6"
 	},
 	"devDependencies": {
