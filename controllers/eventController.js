@@ -5,6 +5,30 @@ const events = JSON.parse(
 	fs.readFileSync(`${__dirname}/../dev-data/data/events.json`)
 );
 
+exports.checkID = (req, res, next, val) => {
+	console.log(`Tour id is: ${val}`);
+
+	if (req.params.id * 1 > events.length) {
+		return res.status(404).json({
+			status: "fail",
+			message: "Invalid event ID"
+		});
+	}
+
+	next();
+};
+
+exports.checkPostBody = (req, res, next) => {
+	// Make checks on the Create Event Post Body
+	if (!req.body.name || !req.body.location) {
+		return res.status(400).json({
+			status: "fail",
+			message: "Missing input values"
+		});
+	}
+	next();
+};
+
 exports.getAllEvents = (req, res) => {
 	res.status(200).json({
 		status: "success",
@@ -21,17 +45,10 @@ exports.getEvent = (req, res) => {
 
 	const event = events.find(el => el.id === id);
 
-	if (!event) {
-		return res.status(404).json({
-			status: "fail",
-			message: "Invalid event ID"
-		});
-	}
-
 	res.status(200).json({
 		status: "success",
 		data: {
-			events
+			event
 		}
 	});
 };
@@ -57,17 +74,6 @@ exports.createEvent = (req, res) => {
 };
 
 exports.updateEvent = (req, res) => {
-	const id = req.params.id * 1;
-	console.log(req.body);
-	const event = events.find(el => el.id === id);
-
-	if (!event) {
-		return res.status(404).json({
-			status: "fail",
-			message: "Invalid event ID"
-		});
-	}
-
 	// Update event here
 	res.status(200).json({
 		status: "success",
@@ -78,16 +84,6 @@ exports.updateEvent = (req, res) => {
 };
 
 exports.deleteEvent = (req, res) => {
-	const id = req.params.id * 1;
-	const event = events.find(el => el.id === id);
-
-	if (!event) {
-		return res.status(404).json({
-			status: "fail",
-			message: "Invalid event ID"
-		});
-	}
-
 	res.status(204).json({
 		status: "success",
 		data: null

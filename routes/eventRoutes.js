@@ -11,10 +11,12 @@ const eventController = require("./../controllers/eventController");
 
 const router = express.Router();
 
+router.param("id", eventController.checkID);
+
 router
 	.route("/")
 	.get(eventController.getAllEvents)
-	.post(eventController.createEvent);
+	.post(eventController.checkPostBody, eventController.createEvent);
 
 router
 	.route("/:id")
