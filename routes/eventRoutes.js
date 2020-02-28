@@ -1,5 +1,5 @@
-const express = require("express");
-const eventController = require("./../controllers/eventController");
+const express = require('express');
+const eventController = require('./../controllers/eventController');
 
 // const {
 // 	getAllEvents,
@@ -11,17 +11,17 @@ const eventController = require("./../controllers/eventController");
 
 const router = express.Router();
 
-router.param("id", eventController.checkID);
+router.param('id', eventController.checkID);
 
 router
-	.route("/")
-	.get(eventController.getAllEvents)
-	.post(eventController.checkPostBody, eventController.createEvent);
+    .route('/')
+    .get(eventController.getAllEvents)
+    .post(eventController.checkPostBody, eventController.createEvent);
 
 router
-	.route("/:id")
-	.get(eventController.getEvent)
-	.patch(eventController.updateEvent)
-	.delete(eventController.deleteEvent);
+    .route('/:id')
+    .get(eventController.getEvent)
+    .patch(eventController.updateEvent)
+    .delete(eventController.deleteEvent);
 
 module.exports = router;
